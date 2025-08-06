@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section');
+  
+  // Make all sections visible immediately
+  sections.forEach(s => s.classList.add('visible'));
+
+  // Still observe for scroll-triggered animations (optional)
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -10,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.2 });
   sections.forEach(s => io.observe(s));
 
+  // Nav-link highlighting
   const links = document.querySelectorAll('.menu a');
   function setActive() {
     let idx = sections.length;
